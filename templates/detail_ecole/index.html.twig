@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailEcoleController!{% endblock %}
+
+{% block body %}
+<style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+         <link rel="stylesheet" href="{{ asset('css/ecole.css') }}">
+            {#{{ encore_entry_link_tags('app') }}#}
+</style>
+
+<div class="example-wrapper">
+  
+
+</div>
+<div class="container-fluid bg-image">
+    <div class="row no-gutter">
+       <h1 class="display-4 heading" align="center">École Informatique</h1>
+            <div class="login d-flex align-items-center py-5">
+             
+                <!-- Demo content-->
+                <div class="container">
+ 
+                    <div class="row">
+                        <div>
+                            <h1>{{ecole.nom}}</h1>
+                            <p class="text-muted mb-4">{{ecole.adress}}</p>
+                            <p class="text-muted mb-4">{{ecole.ville}}</p>
+                            <h4 class="display-6">Formation</h4>
+                         
+                        </div>
+                        <div>
+                         
+                           <div class="d-flex  mt-2h-200  justify="space-beetwin">
+                           {% for el in ecole.formation%}
+                            <div class="d-flex align-items-center align-self-center card p-2 text-center cookies">
+                            <img src="https://miro.medium.com/max/1400/1*CpDidbInbG4Er_0j_hknFQ.jpeg" width="100">
+                            <span class="mt-2">{{el.nom}}</span>
+                           
+                            <a href="{{ path('detail_formation', {'id':el.id}) }}" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm mt-3 px-4" type="button">detail</a> </div>
+                            
+                           
+                             {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+            </div>
+        </div><!-- End -->
+
+    </div>
+</div>
+
+
+{% endblock %}

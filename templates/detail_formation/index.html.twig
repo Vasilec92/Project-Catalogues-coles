@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailFormationController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <table>
+    <thead>
+        <tr>
+            <th colspan="6">Detail formation</th>
+        </tr>
+    </thead>
+    <tbody>  
+    <tr>    
+            <td>Nom</td>
+            <td colspan="4">Module</td>
+            
+              
+        <tr>    
+            <td>{{formation.nom}}</td>
+             {% for el in formation.module%}
+            <td>
+             <ul>          
+               <li>Nom: <span class="title"><a href="{{ path('detail_module', {'id':el.id}) }}">{{el.nom}}</a></span></li>
+                <li>Description: {{ el.description}}</li>
+                <li>Heure : {{ el.numHeure}}</li>            
+             </ul>
+           {% endfor %}  
+           </td>
+              
+        </tr>
+         
+    </tbody>
+   
+</table>
+ <p class="title">Cette formation présente dans école suivent</p>
+            <ul> 
+               {% for el in formation.ecole%}
+            
+                     <li><a href="{{ path('detail_ecole', {'id':el.id}) }}">{{el.nom}}</a></li>
+                {% endfor %}  
+            </ul> 
+</div>
+{% endblock %}

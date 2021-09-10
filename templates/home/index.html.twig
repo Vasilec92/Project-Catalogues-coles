@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+{% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+         <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+            {#{{ encore_entry_link_tags('app') }}#}
+{% endblock %}
+
+
+<div class="container ">
+  <h1 align="center" class="heading">Ecoles d'informatique en France : trouvez votre formation en quelques clics…</h1>
+  <div class="row home">
+  {% for el in ecoles%}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <a href="{{ path('detail_ecole', {'id':el.id}) }}">
+      <div class="our-team">
+        <div class="picture">
+          <img class="img-fluid" src="https://picsum.photos/id/0/130/130">
+        </div>
+        <div class="team-content">
+          <h3 class="name">{{el.nom}}</h3>
+          <h4 class="title">{{el.adress}}</h4>
+          <h4 class="title">{{el.ville}}</h4>
+        </div>
+        <ul class="social">
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+        </ul>
+      </div>
+    </a>
+    </div>
+    {% endfor %}
+   
+  </div>
+</div>
+
+{% endblock %}

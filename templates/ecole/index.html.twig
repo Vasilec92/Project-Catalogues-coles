@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ecole index{% endblock %}
+
+{% block body %}
+    <h1>Ecole </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adress</th>
+                <th>Ville</th>
+                <th>Photo</th>
+                <th>Formation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ecole in ecoles %}
+            <tr>
+                <td>{{ ecole.id }}</td>
+                <td>{{ ecole.nom }}</td>
+                <td>{{ ecole.adress }}</td>
+                <td>{{ ecole.ville }}</td>
+                <td>{{ ecole.photo }}</td>
+                <td>
+                    <ul>
+                    {% for el in ecole.formation%}
+                    <li>{{el.nom}}</li>
+                        
+                    {% endfor %}
+                    </ul>
+                    <a href="{{ path('add_formation',{'id': ecole.id}) }}"> Add  </a>
+                    <a href="{{ path('supprime_formation',{'id': ecole.id}) }}"> Supprime </a>
+                </td> 
+                <td>
+                    <a href="{{ path('ecole_show', {'id': ecole.id}) }}">show</a>
+                    <a href="{{ path('ecole_edit', {'id': ecole.id}) }}">edit</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('ecole_new') }}">Create new</a>
+    
+    
+    
+    <h1>Formation </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Module</th>
+                <th>actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.nom }}</td>
+                <td>
+                 <ul>
+                {% for el in formation.module%}
+                    <li>{{el.nom}}</li>
+                 {% endfor %}      
+                 </ul>
+                 <a href="{{ path('add_module',{'id': formation.id}) }}"> Add  </a>
+                 <a href="{{ path('supprime_module',{'id': formation.id}) }}"> Supprime </a>
+                  
+                </td>
+               
+                <td>
+                    <a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
+                    <a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('formation_new') }}">Create new</a>
+
+
+
+
+     <h1>Module </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>NumHeure</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for module in modules %}
+            <tr>
+                <td>{{ module.id }}</td>
+                <td>{{ module.nom }}</td>
+                <td>{{ module.description }}</td>
+                <td>{{ module.numHeure }}</td>
+                <td>
+                    <a href="{{ path('module_show', {'id': module.id}) }}">show</a>
+                    <a href="{{ path('module_edit', {'id': module.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('module_new') }}">Create new</a>
+{% endblock %}
